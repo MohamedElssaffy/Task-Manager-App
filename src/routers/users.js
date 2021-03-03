@@ -3,7 +3,7 @@ const multer = require('multer')
 const sharp = require('sharp')
 const User = require('../models/users')
 const auth = require('../middleware/auth')
-const { sendWelcomeEmail, SendCancleEmail, sendCancleEmail } = require('../emails/account')
+const { sendWelcomeEmail, sendCancleEmail } = require('../emails/account')
 
 
 const router = new express.Router()
@@ -144,6 +144,7 @@ router.get('/users/:id/avatar', async (req, res) => {
         res.send(user.avatar)
 
     } catch (e) {
+        console.error(e.response)
         res.status(404).send(e)
     }
 })

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
+const PRODUCTION_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.zlo5o.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+const url = process.env.NODE_ENV === 'production'?PRODUCTION_URL : process.env.LOCAL_URL 
 
-mongoose.connect(process.env.MONGODB_URL, {
+mongoose.connect(url, {
     useNewUrlParser: true,
     useCreateIndex: true
 })
